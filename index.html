@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Message For You</title>
+    <style>
+        body {
+            background-color: #fff0f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+        h1 {
+            color: #ff4d6d;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #590d22;
+            font-size: 1.5rem;
+        }
+        .heart {
+            color: #ff4d6d;
+            font-size: 50px;
+            animation: beat 1s infinite alternate;
+        }
+        @keyframes beat {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+        /* Floating hearts background */
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.2);
+            font-size: 20px;
+            user-select: none;
+            z-index: 0;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>I love my dear</h1>
+        <p>To my wonderful wife, you are my everything.</p>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('bg-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
