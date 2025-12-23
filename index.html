@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Dear</title>
+    <title>For My Dear Wife</title>
     <style>
         body {
-            background-color: #fffaf0; /* Slightly warmer cream color */
+            background-color: #fffaf0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -14,46 +14,74 @@
             margin: 0;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             overflow: hidden;
+            touch-action: manipulation;
         }
         .container {
             text-align: center;
-            padding: 50px;
+            padding: 40px;
             background: white;
             border-radius: 30px;
             box-shadow: 0 15px 35px rgba(255, 225, 0, 0.2);
-            z-index: 1;
-            border: 2px solid #ffe100; /* Banana yellow border */
+            z-index: 2;
+            border: 2px solid #ffe100;
+            max-width: 80%;
         }
         h1 {
             color: #d81b60;
-            font-size: 3rem;
-            margin-bottom: 15px;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
         p {
             color: #6d4c41;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             line-height: 1.4;
+            margin-bottom: 20px;
         }
         .main-emoji {
             font-size: 60px;
-            margin-bottom: 10px;
             animation: bounce 2s infinite;
         }
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
-        /* Floating elements background */
         .floating {
             position: absolute;
             user-select: none;
-            z-index: 0;
+            z-index: 1;
             animation: floatUp 6s linear infinite;
-            opacity: 0.6;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .floating:active {
+            transform: scale(2);
+            opacity: 0;
         }
         @keyframes floatUp {
             0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+        button {
+            background-color: #ffb800;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        button:hover {
+            background-color: #d81b60;
+            transform: scale(1.05);
+        }
+        #note-display {
+            margin-top: 20px;
+            font-style: italic;
+            color: #d81b60;
+            min-height: 30px;
         }
     </style>
 </head>
@@ -61,30 +89,57 @@
 
     <div class="container">
         <div class="main-emoji">🍌❤️</div>
-        <h1>I love my dear</h1>
+        <h1>I love you</h1>
         <p>Thanks for carrying our <strong>little banana</strong>.</p>
+        
+        <button onclick="showNote()">Click for a message</button>
+        <div id="note-display"></div>
     </div>
 
     <script>
+        const notes = [
+            "You're going to be the best mom",
+            "I'm so proud of my dear",
+            "I miss my dearie",
+            "Can't wait to meet our little one"
+        ];
+
+        function showNote() {
+            const display = document.getElementById('note-display');
+            const randomNote = notes[Math.floor(Math.random() * notes.length)];
+            display.innerText = randomNote;
+            
+            // Add a little pop animation to the text
+            display.style.animation = 'none';
+            display.offsetHeight; 
+            display.style.animation = 'bounce 0.5s ease';
+        }
+
         function createFloatingElement() {
             const el = document.createElement('div');
             el.classList.add('floating');
             
-            // Randomly choose between a heart and a banana
-            const items = ['❤️', '🍌', '✨', '💖'];
+            const items = ['❤️', '🍌', '✨', '💖', '⭐'];
             el.innerHTML = items[Math.floor(Math.random() * items.length)];
             
             el.style.left = Math.random() * 100 + 'vw';
-            el.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            el.style.fontSize = (Math.random() * 20 + 25) + 'px';
             el.style.animationDuration = (Math.random() * 3 + 4) + 's';
+
+            // Function to "pop" the emoji when clicked
+            el.addEventListener('mousedown', function() {
+                this.innerHTML = '✨';
+                setTimeout(() => this.remove(), 100);
+            });
             
             document.body.appendChild(el);
             
             setTimeout(() => {
-                el.remove();
+                if(el.parentElement) el.remove();
             }, 7000);
         }
-        setInterval(createFloatingElement, 400);
+
+        setInterval(createFloatingElement, 500);
     </script>
 </body>
 </html>
