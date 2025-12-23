@@ -20,9 +20,9 @@
             padding: 50px;
             background: white;
             border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(255, 184, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(255, 225, 0, 0.2);
             z-index: 1;
-            border: 2px solid #ffb800;
+            border: 2px solid #ffe100; /* Banana yellow border */
         }
         h1 {
             color: #d81b60;
@@ -48,7 +48,7 @@
             position: absolute;
             user-select: none;
             z-index: 0;
-            animation: float Up 6s linear infinite;
+            animation: floatUp 6s linear infinite;
             opacity: 0.6;
         }
         @keyframes floatUp {
@@ -60,9 +60,9 @@
 <body>
 
     <div class="container">
-        <div class="main-emoji">🥭❤️</div>
+        <div class="main-emoji">🍌❤️</div>
         <h1>I love my dear</h1>
-        <p>Thanks for carrying our <strong>little mango</strong>.</p>
+        <p>Thanks for carrying our <strong>little banana</strong>.</p>
     </div>
 
     <script>
@@ -70,8 +70,8 @@
             const el = document.createElement('div');
             el.classList.add('floating');
             
-            // Randomly choose between a heart and a mango
-            const items = ['❤️', '🥭', '✨', '💖'];
+            // Randomly choose between a heart and a banana
+            const items = ['❤️', '🍌', '✨', '💖'];
             el.innerHTML = items[Math.floor(Math.random() * items.length)];
             
             el.style.left = Math.random() * 100 + 'vw';
