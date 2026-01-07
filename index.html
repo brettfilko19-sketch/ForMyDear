@@ -6,7 +6,8 @@
     <title>For My Dear Wife</title>
     <style>
         body {
-            background-color: #fffaf0;
+            /* Changed to a soft rose-white */
+            background-color: #fff5f5; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,18 +22,20 @@
             padding: 40px;
             background: white;
             border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(255, 225, 0, 0.2);
+            /* Changed shadow to a soft red */
+            box-shadow: 0 15px 35px rgba(220, 20, 60, 0.15);
             z-index: 2;
-            border: 2px solid #ffe100;
+            /* Changed border to a vibrant red */
+            border: 2px solid #e53935;
             max-width: 80%;
         }
         h1 {
-            color: #d81b60;
+            color: #b71c1c;
             font-size: 2.5rem;
             margin-bottom: 10px;
         }
         p {
-            color: #6d4c41;
+            color: #442c2c;
             font-size: 1.4rem;
             line-height: 1.4;
             margin-bottom: 20px;
@@ -62,7 +65,8 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
         button {
-            background-color: #ffb800;
+            /* Changed button to red */
+            background-color: #d32f2f;
             border: none;
             padding: 12px 25px;
             border-radius: 25px;
@@ -74,13 +78,13 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         button:hover {
-            background-color: #d81b60;
+            background-color: #b71c1c;
             transform: scale(1.05);
         }
         #note-display {
             margin-top: 20px;
             font-style: italic;
-            color: #d81b60;
+            color: #d32f2f;
             min-height: 30px;
         }
     </style>
@@ -88,9 +92,9 @@
 <body>
 
     <div class="container">
-        <div class="main-emoji">🍌❤️</div>
+        <div class="main-emoji">🫑❤️</div>
         <h1>I love you</h1>
-        <p>Thanks for carrying our <strong>little banana</strong>.</p>
+        <p>Thanks for carrying our <strong>little bell pepper</strong>.</p>
         
         <button onclick="showNote()">Click for a message</button>
         <div id="note-display"></div>
@@ -109,7 +113,6 @@
             const randomNote = notes[Math.floor(Math.random() * notes.length)];
             display.innerText = randomNote;
             
-            // Add a little pop animation to the text
             display.style.animation = 'none';
             display.offsetHeight; 
             display.style.animation = 'bounce 0.5s ease';
@@ -119,14 +122,14 @@
             const el = document.createElement('div');
             el.classList.add('floating');
             
-            const items = ['❤️', '🍌', '✨', '💖', '⭐'];
+            // Updated items to include the Bell Pepper and red hearts
+            const items = ['❤️', '🫑', '✨', '💖', '🌹'];
             el.innerHTML = items[Math.floor(Math.random() * items.length)];
             
             el.style.left = Math.random() * 100 + 'vw';
             el.style.fontSize = (Math.random() * 20 + 25) + 'px';
             el.style.animationDuration = (Math.random() * 3 + 4) + 's';
 
-            // Function to "pop" the emoji when clicked
             el.addEventListener('mousedown', function() {
                 this.innerHTML = '✨';
                 setTimeout(() => this.remove(), 100);
