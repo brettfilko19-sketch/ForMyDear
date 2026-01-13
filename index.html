@@ -6,8 +6,8 @@
     <title>For My Dear Wife</title>
     <style>
         body {
-            /* Changed to a soft rose-white */
-            background-color: #fff5f5; 
+            /* Soft Grapefruit Yellow-Cream */
+            background-color: #fff9e6; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,20 +22,20 @@
             padding: 40px;
             background: white;
             border-radius: 30px;
-            /* Changed shadow to a soft red */
-            box-shadow: 0 15px 35px rgba(220, 20, 60, 0.15);
+            /* Soft Coral Shadow */
+            box-shadow: 0 15px 35px rgba(255, 127, 80, 0.2);
             z-index: 2;
-            /* Changed border to a vibrant red */
-            border: 2px solid #e53935;
+            /* Vibrant Grapefruit Pink Border */
+            border: 2px solid #ff6b6b;
             max-width: 80%;
         }
         h1 {
-            color: #b71c1c;
+            color: #d84315; /* Deep Citrus Orange */
             font-size: 2.5rem;
             margin-bottom: 10px;
         }
         p {
-            color: #442c2c;
+            color: #5d4037;
             font-size: 1.4rem;
             line-height: 1.4;
             margin-bottom: 20px;
@@ -65,8 +65,8 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
         button {
-            /* Changed button to red */
-            background-color: #d32f2f;
+            /* Grapefruit Pink Button */
+            background-color: #ff6b6b;
             border: none;
             padding: 12px 25px;
             border-radius: 25px;
@@ -78,13 +78,13 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         button:hover {
-            background-color: #b71c1c;
+            background-color: #ee5253;
             transform: scale(1.05);
         }
         #note-display {
             margin-top: 20px;
             font-style: italic;
-            color: #d32f2f;
+            color: #d84315;
             min-height: 30px;
         }
     </style>
@@ -92,9 +92,9 @@
 <body>
 
     <div class="container">
-        <div class="main-emoji">🫑❤️</div>
+        <div class="main-emoji">🍊💖</div>
         <h1>I love you</h1>
-        <p>Thanks for carrying our <strong>little bell pepper</strong>.</p>
+        <p>Thanks for carrying our <strong>little grapefruit</strong>.</p>
         
         <button onclick="showNote()">Click for a message</button>
         <div id="note-display"></div>
@@ -122,8 +122,8 @@
             const el = document.createElement('div');
             el.classList.add('floating');
             
-            // Updated items to include the Bell Pepper and red hearts
-            const items = ['❤️', '🫑', '✨', '💖', '🌹'];
+            // Updated items to include Citrus and warm colors
+            const items = ['🍊', '🍋', '💗', '✨', '🌸'];
             el.innerHTML = items[Math.floor(Math.random() * items.length)];
             
             el.style.left = Math.random() * 100 + 'vw';
