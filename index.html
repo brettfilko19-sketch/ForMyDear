@@ -6,8 +6,8 @@
     <title>For My Dear Wife</title>
     <style>
         body {
-            /* Soft Grapefruit Yellow-Cream */
-            background-color: #fff9e6; 
+            /* Creamy Rutabaga Interior Color */
+            background-color: #fdf5e6; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,15 +22,15 @@
             padding: 40px;
             background: white;
             border-radius: 30px;
-            /* Soft Coral Shadow */
-            box-shadow: 0 15px 35px rgba(255, 127, 80, 0.2);
+            /* Soft Purple shadow to match rutabaga skin */
+            box-shadow: 0 15px 35px rgba(107, 63, 111, 0.15);
             z-index: 2;
-            /* Vibrant Grapefruit Pink Border */
-            border: 2px solid #ff6b6b;
+            /* Rutabaga Purple Border */
+            border: 3px solid #6b3f6f;
             max-width: 80%;
         }
         h1 {
-            color: #d84315; /* Deep Citrus Orange */
+            color: #4a2c4d; /* Deep Root Purple */
             font-size: 2.5rem;
             margin-bottom: 10px;
         }
@@ -65,8 +65,8 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
         button {
-            /* Grapefruit Pink Button */
-            background-color: #ff6b6b;
+            /* Garden Green Button */
+            background-color: #6a8e4e;
             border: none;
             padding: 12px 25px;
             border-radius: 25px;
@@ -78,23 +78,24 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         button:hover {
-            background-color: #ee5253;
+            background-color: #55723e;
             transform: scale(1.05);
         }
         #note-display {
             margin-top: 20px;
             font-style: italic;
-            color: #d84315;
+            color: #6b3f6f;
             min-height: 30px;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="main-emoji">🍊💖</div>
+        <div class="main-emoji">🍠💜🥬</div>
         <h1>I love you</h1>
-        <p>Thanks for carrying our <strong>little grapefruit</strong>.</p>
+        <p>Thanks for carrying our <strong>little rutabaga</strong>.</p>
         
         <button onclick="showNote()">Click for a message</button>
         <div id="note-display"></div>
@@ -122,8 +123,8 @@
             const el = document.createElement('div');
             el.classList.add('floating');
             
-            // Updated items to include Citrus and warm colors
-            const items = ['🍊', '🍋', '💗', '✨', '🌸'];
+            // Earthy, garden-themed icons
+            const items = ['🍠', '🥬', '💜', '🌱', '✨', '🥔'];
             el.innerHTML = items[Math.floor(Math.random() * items.length)];
             
             el.style.left = Math.random() * 100 + 'vw';
