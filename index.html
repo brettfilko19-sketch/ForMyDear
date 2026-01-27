@@ -86,12 +86,12 @@
             min-height: 30px;
             font-weight: 500;
         }
-        /* Style for the surprise screen */
         .surprise-screen {
-            font-size: 5rem;
+            font-size: 3.5rem;
             color: #6b3f6f;
             font-weight: bold;
             text-align: center;
+            padding: 20px;
         }
     </style>
 </head>
@@ -137,7 +137,6 @@
             el.style.fontSize = (Math.random() * 20 + 25) + 'px';
             el.style.animationDuration = (Math.random() * 3 + 4) + 's';
 
-            // Desktop and Mobile support
             el.addEventListener('mousedown', handleEmojiClick);
             
             document.body.appendChild(el);
@@ -160,9 +159,16 @@
         }
 
         function triggerSurprise() {
-            // Replaces the whole body content
-            document.body.innerHTML = `<div class="surprise-screen">Hi Dear</div>`;
-            document.body.style.backgroundColor = "#fdf5e6"; // Keep the creamy color
+            // Check if the user's timezone is in Australia
+            const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            let message = "Hi Dear";
+
+            if (userTimezone.includes("Australia")) {
+                message = "Hello Mr. 405 GIG ATT";
+            }
+
+            document.body.innerHTML = `<div class="surprise-screen">${message}</div>`;
+            document.body.style.backgroundColor = "#fdf5e6";
         }
 
         setInterval(createFloatingElement, 500);
