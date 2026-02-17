@@ -1,125 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Dear Wife</title>
-    <style>
-        body {
-            background-color: #f4f7ed; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            overflow: hidden;
-            touch-action: manipulation;
-        }
-        .container {
-            text-align: center;
-            padding: 40px;
-            background: white;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(27, 67, 50, 0.15);
-            z-index: 2;
-            border: 3px solid #1b4332;
-            max-width: 80%;
-            transition: all 0.5s ease;
-        }
-        h1 {
-            color: #081c15; 
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #2d6a4f;
-            font-size: 1.4rem;
-            line-height: 1.4;
-            margin-bottom: 20px;
-        }
-        #click-counter {
-            font-weight: bold;
-            color: #40916c;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-        .main-emoji {
-            font-size: 40px; 
-            display: inline-block;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin-bottom: 10px;
-        }
-        .floating {
-            position: absolute;
-            user-select: none;
-            z-index: 1;
-            animation: floatUp 6s linear infinite;
-            cursor: pointer;
-        }
-        @keyframes floatUp {
-            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-        }
-        button {
-            background-color: #2d6a4f;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover {
-            background-color: #1b4332;
-            transform: scale(1.05);
-        }
-        #note-display {
-            margin-top: 20px;
-            font-style: italic;
-            color: #1b4332;
-            min-height: 30px;
-        }
-        .surprise-screen {
-            font-size: 3.5rem;
-            color: #081c15;
-            font-weight: bold;
-            text-align: center;
-            animation: popIn 0.5s ease-out;
-        }
-        @keyframes popIn {
-            0% { transform: scale(0); }
-            100% { transform: scale(1); }
-        }
-        /* Style for the hidden Easter egg input */
-        #easter-egg-input {
-            width: 0; /* Make it invisible */
-            height: 0;
-            opacity: 0; /* Make it invisible */
-            position: absolute; /* Take it out of flow */
-            left: -9999px; /* Move it off-screen */
-            top: -9999px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container" id="main-container">
-        <div id="click-counter">Zucchini Growth: <span id="score">0</span>/10</div>
-        <div class="main-emoji" id="growth-emoji">🌱</div>
-        <h1>I love you</h1>
-        <p>Help our <strong>Zucchini</strong> grow!</p>
-        
-        <button onclick="showNote()">A message for you</button>
-        <div id="note-display"></div>
-
-        <input type="text" id="easter-egg-input" onkeyup="checkEasterEgg()">
-    </div>
-
-    <script>
+<script>
         let clickCount = 0;
+        let secretTapCount = 0; // New counter for the easter egg
+        let lastTapTime = 0;
         const goal = 10;
         const notes = [
             "You're going to be the best mom",
@@ -135,6 +17,29 @@
             const display = document.getElementById('note-display');
             display.innerText = notes[Math.floor(Math.random() * notes.length)];
         }
+
+        // The main zucchini element
+        const growthEl = document.getElementById('growth-emoji');
+
+        // Secret Tap Logic for Mobile
+        growthEl.addEventListener('click', function() {
+            const currentTime = new Date().getTime();
+            const tapInterval = currentTime - lastTapTime;
+            
+            // If taps are within 500ms of each other, count them as "rapid taps"
+            if (tapInterval < 500) {
+                secretTapCount++;
+            } else {
+                secretTapCount = 1;
+            }
+            
+            lastTapTime = currentTime;
+
+            // Trigger the photo page after 5 rapid taps
+            if (secretTapCount === 5) {
+                window.location.href = 'easteregg.html';
+            }
+        });
 
         function createFloatingElement() {
             const el = document.createElement('div');
@@ -181,34 +86,14 @@
             document.body.style.backgroundColor = "#d8f3dc";
         }
 
-        // --- New Easter Egg Functionality ---
-        const easterEggPhrase = "Hi Dear"; // The secret word
+        // Keep the keyboard version for Desktop
         let typedInput = "";
-
-        function checkEasterEgg(event) {
-            // Get the last typed character
-            const lastChar = event.key.toUpperCase(); // Convert to uppercase for case-insensitivity
-
-            // Append to typedInput
-            typedInput += lastChar;
-
-            // Keep typedInput within the length of the phrase
-            if (typedInput.length > easterEggPhrase.length) {
-                typedInput = typedInput.substring(typedInput.length - easterEggPhrase.length);
+        document.addEventListener('keyup', (e) => {
+            typedInput += e.key.toUpperCase();
+            if (typedInput.includes("ZUCCHINI")) {
+                window.location.href = 'easteregg.html';
             }
-
-            // Check if the typed sequence matches the easter egg phrase
-            if (typedInput === easterEggPhrase) {
-                console.log("Easter egg triggered!");
-                // Redirect to the new photo page
-                window.location.href = 'easteregg.html'; 
-            }
-        }
-        
-        // Listen for keyboard input on the whole document to catch the easter egg
-        document.addEventListener('keyup', checkEasterEgg);
+        });
 
         setInterval(createFloatingElement, 600);
     </script>
-</body>
-</html>
