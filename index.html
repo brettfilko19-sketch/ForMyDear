@@ -6,8 +6,8 @@
     <title>For My Dear Wife</title>
     <style>
         body {
-            /* Earthy sage background kept the same */
-            background-color: #f1f3eb; 
+            /* Updated to a soft zucchini-flesh cream/green */
+            background-color: #f4f7ed; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,25 +22,26 @@
             padding: 40px;
             background: white;
             border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(106, 142, 78, 0.15);
+            box-shadow: 0 15px 35px rgba(27, 67, 50, 0.15);
             z-index: 2;
-            border: 3px solid #6a8e4e;
+            /* Zucchini skin dark green */
+            border: 3px solid #1b4332;
             max-width: 80%;
         }
         h1 {
-            color: #2d3a22; 
+            color: #081c15; 
             font-size: 2.5rem;
             margin-bottom: 10px;
         }
         p {
-            color: #4a5d3e;
+            color: #2d6a4f;
             font-size: 1.4rem;
             line-height: 1.4;
             margin-bottom: 20px;
         }
         #click-counter {
             font-weight: bold;
-            color: #6a8e4e;
+            color: #40916c;
             font-size: 1.1rem;
             margin-bottom: 10px;
         }
@@ -65,7 +66,8 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
         button {
-            background-color: #6a8e4e;
+            /* Garden green button */
+            background-color: #2d6a4f;
             border: none;
             padding: 12px 25px;
             border-radius: 25px;
@@ -77,19 +79,19 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         button:hover {
-            background-color: #4e6939;
+            background-color: #1b4332;
             transform: scale(1.05);
         }
         #note-display {
             margin-top: 20px;
             font-style: italic;
-            color: #5d4037;
+            color: #1b4332;
             min-height: 30px;
             font-weight: 500;
         }
         .surprise-screen {
             font-size: 3.5rem;
-            color: #2d3a22;
+            color: #081c15;
             font-weight: bold;
             text-align: center;
             padding: 20px;
@@ -100,9 +102,9 @@
 
     <div class="container" id="main-container">
         <div id="click-counter">Harvested: <span id="score">0</span>/5</div>
-        <div class="main-emoji">🏛️🥬⚔️</div>
+        <div class="main-emoji">🥒✨🌱</div>
         <h1>I love you</h1>
-        <p>Thanks for carrying our <strong>Roman Lettuce</strong>.</p>
+        <p>Thanks for carrying our <strong>Zucchini</strong>.</p>
         
         <button onclick="showNote()">Click for a message</button>
         <div id="note-display"></div>
@@ -115,7 +117,7 @@
             "I'm so proud of my dear",
             "I miss my dearie",
             "Can't wait to meet our little one",
-            "You're my favorite Roman"
+            "You're my favorite Zucchini"
         ];
 
         function showNote() {
@@ -132,8 +134,8 @@
             const el = document.createElement('div');
             el.classList.add('floating');
             
-            // Added Roman-themed emojis mixed with lettuce
-            const items = ['🥬', '🏛️', '🌿', '⚔️', '🏺', '🍃', '🥗', '🛡️'];
+            // Zucchini/Garden themed emojis
+            const items = ['🥒', '🌱', '🌿', '🌻', '🍃', '🥗', '💚', '👩‍🌾'];
             el.innerHTML = items[Math.floor(Math.random() * items.length)];
             
             el.style.left = Math.random() * 100 + 'vw';
@@ -163,14 +165,14 @@
 
         function triggerSurprise() {
             const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            let message = "Hi Dear 🥬";
+            let message = "Hi Dear 🥒";
 
             if (userTimezone.includes("Australia")) {
-                message = "Hello Mr. 415 GIG ATT 🏛️";
+                message = "Hello Mr. 415 GIG ATT 🥒";
             }
 
             document.body.innerHTML = `<div class="surprise-screen">${message}</div>`;
-            document.body.style.backgroundColor = "#f1f3eb";
+            document.body.style.backgroundColor = "#f4f7ed";
         }
 
         setInterval(createFloatingElement, 500);
