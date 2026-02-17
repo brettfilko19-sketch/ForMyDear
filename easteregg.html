@@ -6,63 +6,98 @@
     <title>Our Zucchini!</title>
     <style>
         body {
-            background-color: #f4f7ed; /* Match main page background */
+            background-color: #f4f7ed;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
-            position: relative; /* For floating caption */
-        }
-        .photo-container {
-            max-width: 90%;
-            max-height: 90%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 5px solid #1b4332; /* Zucchini border */
-            box-shadow: 0 10px 25px rgba(27, 67, 50, 0.2);
-            border-radius: 15px;
-            overflow: hidden; /* Ensures image stays within rounded borders */
-        }
-        .photo-container img {
-            max-width: 100%;
-            max-height: 100%;
-            display: block;
-            object-fit: contain; /* Ensures the image fits without cropping */
-        }
-        .floating-caption {
-            position: absolute;
-            font-size: 3em; /* Large, noticeable text */
-            font-weight: bold;
-            color: #2d6a4f; /* Green color */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            animation: floatAndFade 10s ease-in-out infinite; /* Floating animation */
-            padding: 10px 20px;
-            border-radius: 15px;
-            background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent background */
-            z-index: 10;
+            position: relative;
         }
 
-        @keyframes floatAndFade {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
-            25% { transform: translate(20vw, -10vh) scale(1.05) rotate(5deg); opacity: 0.9; }
-            50% { transform: translate(-15vw, 15vh) scale(1) rotate(-5deg); opacity: 0.8; }
-            75% { transform: translate(10vw, -5vh) scale(0.95) rotate(3deg); opacity: 0.9; }
-            100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+        .photo-frame {
+            position: relative;
+            max-width: 85vw;
+            max-height: 80vh;
+            border: 8px solid #ffffff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            transform: rotate(-2deg); /* Gives it a "photo" feel */
+            z-index: 1;
+            background: white;
+            padding: 10px;
+        }
+
+        .photo-frame img {
+            display: block;
+            max-width: 100%;
+            max-height: 75vh;
+            border-radius: 2px;
+        }
+
+        /* Floating Caption Styling */
+        .floating-caption {
+            position: absolute;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1b4332;
+            white-space: nowrap;
+            text-shadow: 2px 2px 10px rgba(255,255,255,0.8);
+            z-index: 10;
+            pointer-events: none; /* Allows clicks to pass through to the image */
+            animation: drift 15s linear infinite;
+        }
+
+        @keyframes drift {
+            0% {
+                top: 80%;
+                left: -20%;
+                transform: rotate(0deg);
+            }
+            25% {
+                top: 20%;
+                left: 30%;
+                transform: rotate(10deg);
+            }
+            50% {
+                top: 50%;
+                left: 80%;
+                transform: rotate(-5deg);
+            }
+            75% {
+                top: 10%;
+                left: 40%;
+                transform: rotate(5deg);
+            }
+            100% {
+                top: 80%;
+                left: -20%;
+                transform: rotate(0deg);
+            }
+        }
+
+        /* Background decorations */
+        .bg-emoji {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            z-index: 0;
         }
     </style>
 </head>
 <body>
-    <div class="photo-container">
-        <img src="https://via.placeholder.com/600x400/2d6a4f/ffffff?text=Your+Photo+Here" alt="Our Zucchini!">
+
+    <div class="photo-frame">
+        <img src="1.jpg" alt="Our Zucchini Photo">
     </div>
 
-    <div class="floating-caption">
-        Our Zucchini! ❤️
-    </div>
+    <div class="floating-caption">Our Zucchini! 🥒❤️</div>
+
+    <div class="bg-emoji" style="top:10%; left:10%;">🥒</div>
+    <div class="bg-emoji" style="top:80%; left:85%;">✨</div>
+    <div class="bg-emoji" style="top:15%; left:70%;">🌱</div>
+
 </body>
 </html>
