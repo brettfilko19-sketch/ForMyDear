@@ -6,7 +6,6 @@
     <title>For My Dear Wife</title>
     <style>
         body {
-            /* Updated to a soft zucchini-flesh cream/green */
             background-color: #f4f7ed; 
             display: flex;
             justify-content: center;
@@ -24,9 +23,9 @@
             border-radius: 30px;
             box-shadow: 0 15px 35px rgba(27, 67, 50, 0.15);
             z-index: 2;
-            /* Zucchini skin dark green */
             border: 3px solid #1b4332;
             max-width: 80%;
+            transition: all 0.5s ease;
         }
         h1 {
             color: #081c15; 
@@ -46,12 +45,10 @@
             margin-bottom: 10px;
         }
         .main-emoji {
-            font-size: 60px;
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            font-size: 40px; 
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 10px;
         }
         .floating {
             position: absolute;
@@ -59,14 +56,12 @@
             z-index: 1;
             animation: floatUp 6s linear infinite;
             cursor: pointer;
-            transition: transform 0.2s;
         }
         @keyframes floatUp {
             0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
         button {
-            /* Garden green button */
             background-color: #2d6a4f;
             border: none;
             padding: 12px 25px;
@@ -76,7 +71,6 @@
             font-size: 1rem;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         button:hover {
             background-color: #1b4332;
@@ -87,78 +81,93 @@
             font-style: italic;
             color: #1b4332;
             min-height: 30px;
-            font-weight: 500;
         }
         .surprise-screen {
             font-size: 3.5rem;
             color: #081c15;
             font-weight: bold;
             text-align: center;
-            padding: 20px;
+            animation: popIn 0.5s ease-out;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        /* Style for the hidden Easter egg input */
+        #easter-egg-input {
+            width: 0; /* Make it invisible */
+            height: 0;
+            opacity: 0; /* Make it invisible */
+            position: absolute; /* Take it out of flow */
+            left: -9999px; /* Move it off-screen */
+            top: -9999px;
         }
     </style>
 </head>
 <body>
 
     <div class="container" id="main-container">
-        <div id="click-counter">Harvested: <span id="score">0</span>/5</div>
-        <div class="main-emoji">🥒✨🌱</div>
+        <div id="click-counter">Zucchini Growth: <span id="score">0</span>/10</div>
+        <div class="main-emoji" id="growth-emoji">🌱</div>
         <h1>I love you</h1>
-        <p>Thanks for carrying our <strong>Zucchini</strong>.</p>
+        <p>Help our <strong>Zucchini</strong> grow!</p>
         
-        <button onclick="showNote()">Click for a message</button>
+        <button onclick="showNote()">A message for you</button>
         <div id="note-display"></div>
+
+        <input type="text" id="easter-egg-input" onkeyup="checkEasterEgg()">
     </div>
 
     <script>
         let clickCount = 0;
+        const goal = 10;
         const notes = [
             "You're going to be the best mom",
             "I'm so proud of my dear",
             "I miss my dearie",
             "Can't wait to meet our little one",
-            "You're my favorite Zucchini"
+            "You're my favorite Zucchini",
+            "You're glowing today!",
+            "Our little sprout is lucky to have you"
         ];
 
         function showNote() {
             const display = document.getElementById('note-display');
-            const randomNote = notes[Math.floor(Math.random() * notes.length)];
-            display.innerText = randomNote;
-            
-            display.style.animation = 'none';
-            display.offsetHeight; 
-            display.style.animation = 'bounce 0.5s ease';
+            display.innerText = notes[Math.floor(Math.random() * notes.length)];
         }
 
         function createFloatingElement() {
             const el = document.createElement('div');
             el.classList.add('floating');
-            
-            // Zucchini/Garden themed emojis
-            const items = ['🥒', '🌱', '🌿', '🌻', '🍃', '🥗', '💚', '👩‍🌾'];
+            const items = ['🥒', '💧', '☀️', '🌱', '🐝', '☁️'];
             el.innerHTML = items[Math.floor(Math.random() * items.length)];
-            
             el.style.left = Math.random() * 100 + 'vw';
             el.style.fontSize = (Math.random() * 20 + 25) + 'px';
             el.style.animationDuration = (Math.random() * 3 + 4) + 's';
 
-            el.addEventListener('mousedown', handleEmojiClick);
-            
+            el.addEventListener('click', handleEmojiClick);
             document.body.appendChild(el);
-            
-            setTimeout(() => {
-                if(el.parentElement) el.remove();
-            }, 7000);
+            setTimeout(() => { if(el.parentElement) el.remove(); }, 7000);
         }
 
         function handleEmojiClick() {
             clickCount++;
-            document.getElementById('score').innerText = clickCount;
+            const scoreEl = document.getElementById('score');
+            const growthEl = document.getElementById('growth-emoji');
             
+            scoreEl.innerText = clickCount;
+            
+            let size = 40 + (clickCount * 10);
+            growthEl.style.fontSize = size + 'px';
+            
+            if (clickCount === 3) growthEl.innerHTML = '🌿';
+            if (clickCount === 6) growthEl.innerHTML = '🥒';
+            if (clickCount === 9) growthEl.innerHTML = '✨🥒✨';
+
             this.innerHTML = '✨';
             setTimeout(() => this.remove(), 100);
 
-            if (clickCount >= 5) {
+            if (clickCount >= goal) {
                 triggerSurprise();
             }
         }
@@ -166,16 +175,40 @@
         function triggerSurprise() {
             const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
             let message = "Hi Dear 🥒";
+            if (userTimezone.includes("Australia")) message = "Hello Mr. 415 GIG ATT 🥒";
 
-            if (userTimezone.includes("Australia")) {
-                message = "Hello Mr. 415 GIG ATT 🥒";
-            }
-
-            document.body.innerHTML = `<div class="surprise-screen">${message}</div>`;
-            document.body.style.backgroundColor = "#f4f7ed";
+            document.body.innerHTML = `<div class="surprise-screen">🎉<br>${message}<br>❤️</div>`;
+            document.body.style.backgroundColor = "#d8f3dc";
         }
 
-        setInterval(createFloatingElement, 500);
+        // --- New Easter Egg Functionality ---
+        const easterEggPhrase = "Hi Dear"; // The secret word
+        let typedInput = "";
+
+        function checkEasterEgg(event) {
+            // Get the last typed character
+            const lastChar = event.key.toUpperCase(); // Convert to uppercase for case-insensitivity
+
+            // Append to typedInput
+            typedInput += lastChar;
+
+            // Keep typedInput within the length of the phrase
+            if (typedInput.length > easterEggPhrase.length) {
+                typedInput = typedInput.substring(typedInput.length - easterEggPhrase.length);
+            }
+
+            // Check if the typed sequence matches the easter egg phrase
+            if (typedInput === easterEggPhrase) {
+                console.log("Easter egg triggered!");
+                // Redirect to the new photo page
+                window.location.href = 'easteregg.html'; 
+            }
+        }
+        
+        // Listen for keyboard input on the whole document to catch the easter egg
+        document.addEventListener('keyup', checkEasterEgg);
+
+        setInterval(createFloatingElement, 600);
     </script>
 </body>
 </html>
