@@ -1,16 +1,92 @@
-<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Dear Wife</title>
+    <style>
+        body {
+            background-color: #f4f7ed; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(27, 67, 50, 0.15);
+            z-index: 2;
+            border: 3px solid #1b4332;
+            max-width: 80%;
+        }
+        h1 { color: #081c15; font-size: 2.5rem; margin-bottom: 10px; }
+        p { color: #2d6a4f; font-size: 1.4rem; margin-bottom: 20px; }
+        #click-counter { font-weight: bold; color: #40916c; font-size: 1.1rem; margin-bottom: 10px; }
+        
+        .main-emoji {
+            font-size: 50px; 
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            margin-bottom: 10px;
+            user-select: none;
+        }
+
+        .floating {
+            position: absolute;
+            user-select: none;
+            z-index: 1;
+            animation: floatUp 6s linear infinite;
+            cursor: pointer;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+        button {
+            background-color: #2d6a4f;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #note-display { margin-top: 20px; font-style: italic; color: #1b4332; min-height: 30px; }
+        .surprise-screen { font-size: 3rem; color: #081c15; font-weight: bold; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-container">
+        <div id="click-counter">Zucchini Growth: <span id="score">0</span>/10</div>
+        <div class="main-emoji" id="growth-emoji">🌱</div>
+        <h1>I love you</h1>
+        <p>Help our <strong>Zucchini</strong> grow!</p>
+        <button onclick="showNote()">A message for you</button>
+        <div id="note-display"></div>
+    </div>
+
+    <script>
         let clickCount = 0;
-        let secretTapCount = 0; // New counter for the easter egg
+        let secretTapCount = 0;
         let lastTapTime = 0;
-        const goal = 10;
+        let typedInput = "";
+
         const notes = [
             "You're going to be the best mom",
             "I'm so proud of my dear",
             "I miss my dearie",
             "Can't wait to meet our little one",
             "You're my favorite Zucchini",
-            "You're glowing today!",
-            "Our little guy is so lucky to have you"
+            "You're glowing today!"
         ];
 
         function showNote() {
@@ -18,82 +94,71 @@
             display.innerText = notes[Math.floor(Math.random() * notes.length)];
         }
 
-        // The main zucchini element
+        // Handle the main growth logic and the secret mobile taps
         const growthEl = document.getElementById('growth-emoji');
-
-        // Secret Tap Logic for Mobile
         growthEl.addEventListener('click', function() {
-            const currentTime = new Date().getTime();
-            const tapInterval = currentTime - lastTapTime;
-            
-            // If taps are within 500ms of each other, count them as "rapid taps"
-            if (tapInterval < 500) {
+            // Secret tap logic
+            const now = Date.now();
+            if (now - lastTapTime < 500) {
                 secretTapCount++;
             } else {
                 secretTapCount = 1;
             }
-            
-            lastTapTime = currentTime;
+            lastTapTime = now;
 
-            // Trigger the photo page after 5 rapid taps
             if (secretTapCount === 5) {
                 window.location.href = 'easteregg.html';
             }
         });
 
+        // Floating elements logic
         function createFloatingElement() {
             const el = document.createElement('div');
             el.classList.add('floating');
-            const items = ['🥒', '💧', '☀️', '🌱', '🐝', '☁️'];
+            const items = ['🥒', '💧', '☀️', '🌱', '🐝'];
             el.innerHTML = items[Math.floor(Math.random() * items.length)];
-            el.style.left = Math.random() * 100 + 'vw';
+            el.style.left = Math.random() * 90 + 'vw';
             el.style.fontSize = (Math.random() * 20 + 25) + 'px';
             el.style.animationDuration = (Math.random() * 3 + 4) + 's';
 
-            el.addEventListener('click', handleEmojiClick);
+            el.addEventListener('click', function() {
+                clickCount++;
+                document.getElementById('score').innerText = clickCount;
+                
+                // Scale the central zucchini
+                let size = 50 + (clickCount * 8);
+                growthEl.style.fontSize = size + 'px';
+                
+                if (clickCount === 3) growthEl.innerHTML = '🌿';
+                if (clickCount === 6) growthEl.innerHTML = '🥒';
+                if (clickCount === 10) triggerSurprise();
+
+                this.innerHTML = '✨';
+                setTimeout(() => this.remove(), 100);
+            });
+
             document.body.appendChild(el);
-            setTimeout(() => { if(el.parentElement) el.remove(); }, 7000);
-        }
-
-        function handleEmojiClick() {
-            clickCount++;
-            const scoreEl = document.getElementById('score');
-            const growthEl = document.getElementById('growth-emoji');
-            
-            scoreEl.innerText = clickCount;
-            
-            let size = 40 + (clickCount * 10);
-            growthEl.style.fontSize = size + 'px';
-            
-            if (clickCount === 3) growthEl.innerHTML = '🌿';
-            if (clickCount === 6) growthEl.innerHTML = '🥒';
-            if (clickCount === 9) growthEl.innerHTML = '✨🥒✨';
-
-            this.innerHTML = '✨';
-            setTimeout(() => this.remove(), 100);
-
-            if (clickCount >= goal) {
-                triggerSurprise();
-            }
+            setTimeout(() => { if(el.parentElement) el.remove(); }, 6000);
         }
 
         function triggerSurprise() {
             const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            let message = "Hi Dear 🥒";
-            if (userTimezone.includes("Australia")) message = "Hello Mr. 415 GIG ATT 🥒";
-
-            document.body.innerHTML = `<div class="surprise-screen">🎉<br>${message}<br>❤️</div>`;
+            let msg = userTimezone.includes("Australia") ? "Hello Mr. 415 GIG ATT 🥒" : "Hi Dear 🥒";
+            document.body.innerHTML = `<div class="surprise-screen">🎉<br>${msg}<br>❤️</div>`;
             document.body.style.backgroundColor = "#d8f3dc";
         }
 
-        // Keep the keyboard version for Desktop
-        let typedInput = "";
+        // Keyboard Easter Egg (Typing "ZUCCHINI")
         document.addEventListener('keyup', (e) => {
             typedInput += e.key.toUpperCase();
             if (typedInput.includes("ZUCCHINI")) {
                 window.location.href = 'easteregg.html';
             }
+            // Prevent string from getting too long
+            if (typedInput.length > 20) typedInput = typedInput.substring(10);
         });
 
         setInterval(createFloatingElement, 600);
     </script>
+</body>
+</html>
