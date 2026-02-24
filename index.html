@@ -6,7 +6,8 @@
     <title>For My Dear Wife</title>
     <style>
         body {
-            background-color: #f4f7ed; 
+            /* Changed to a soft lavender/purple palette */
+            background-color: #f3e5f5; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,14 +22,15 @@
             padding: 40px;
             background: white;
             border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(27, 67, 50, 0.15);
+            box-shadow: 0 15px 35px rgba(74, 20, 140, 0.15);
             z-index: 2;
-            border: 3px solid #1b4332;
+            /* Purple border to match eggplant */
+            border: 3px solid #4a148c;
             max-width: 80%;
         }
-        h1 { color: #081c15; font-size: 2.5rem; margin-bottom: 10px; }
-        p { color: #2d6a4f; font-size: 1.4rem; margin-bottom: 20px; }
-        #click-counter { font-weight: bold; color: #40916c; font-size: 1.1rem; margin-bottom: 10px; }
+        h1 { color: #311b92; font-size: 2.5rem; margin-bottom: 10px; }
+        p { color: #6a1b9a; font-size: 1.4rem; margin-bottom: 20px; }
+        #click-counter { font-weight: bold; color: #7b1fa2; font-size: 1.1rem; margin-bottom: 10px; }
         
         .main-emoji {
             font-size: 50px; 
@@ -51,25 +53,29 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
         button {
-            background-color: #2d6a4f;
+            background-color: #6a1b9a;
             border: none;
             padding: 12px 25px;
             border-radius: 25px;
             color: white;
             font-weight: bold;
             cursor: pointer;
+            transition: background 0.3s;
         }
-        #note-display { margin-top: 20px; font-style: italic; color: #1b4332; min-height: 30px; }
-        .surprise-screen { font-size: 3rem; color: #081c15; font-weight: bold; text-align: center; }
+        button:hover {
+            background-color: #4a148c;
+        }
+        #note-display { margin-top: 20px; font-style: italic; color: #4a148c; min-height: 30px; }
+        .surprise-screen { font-size: 3rem; color: #311b92; font-weight: bold; text-align: center; }
     </style>
 </head>
 <body>
 
     <div class="container" id="main-container">
-        <div id="click-counter">Zucchini Growth: <span id="score">0</span>/10</div>
+        <div id="click-counter">Eggplant Growth: <span id="score">0</span>/10</div>
         <div class="main-emoji" id="growth-emoji">🌱</div>
         <h1>I love you</h1>
-        <p>Help our <strong>Zucchini</strong> grow!</p>
+        <p>Help our <strong>Eggplant</strong> grow!</p>
         <button onclick="showNote()">A message for you</button>
         <div id="note-display"></div>
     </div>
@@ -92,10 +98,8 @@
             display.innerText = notes[Math.floor(Math.random() * notes.length)];
         }
 
-        // Handle the main growth logic and the secret mobile taps
         const growthEl = document.getElementById('growth-emoji');
         growthEl.addEventListener('click', function() {
-            // Secret tap logic
             const now = Date.now();
             if (now - lastTapTime < 500) {
                 secretTapCount++;
@@ -109,11 +113,11 @@
             }
         });
 
-        // Floating elements logic
         function createFloatingElement() {
             const el = document.createElement('div');
             el.classList.add('floating');
-            const items = ['🥒', '💧', '☀️', '🌱', '🐝'];
+            // Changed items to purple/growth themed emojis
+            const items = ['🍆', '💧', '☀️', '🌱', '🌸', '💜'];
             el.innerHTML = items[Math.floor(Math.random() * items.length)];
             el.style.left = Math.random() * 90 + 'vw';
             el.style.fontSize = (Math.random() * 20 + 25) + 'px';
@@ -123,12 +127,12 @@
                 clickCount++;
                 document.getElementById('score').innerText = clickCount;
                 
-                // Scale the central zucchini
                 let size = 50 + (clickCount * 8);
                 growthEl.style.fontSize = size + 'px';
                 
+                // Growth stages updated to Eggplant
                 if (clickCount === 3) growthEl.innerHTML = '🌿';
-                if (clickCount === 6) growthEl.innerHTML = '🥒';
+                if (clickCount === 6) growthEl.innerHTML = '🍆';
                 if (clickCount === 10) triggerSurprise();
 
                 this.innerHTML = '✨';
@@ -141,18 +145,18 @@
 
         function triggerSurprise() {
             const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            let msg = userTimezone.includes("Australia") ? "Hello Mr. 415 GIG ATT 🥒" : "Hi Dear 🥒";
+            // Message updated with Eggplant emoji
+            let msg = userTimezone.includes("Australia") ? "Hello Mr. 415 GIG ATT 🍆" : "Hi Dear 🍆";
             document.body.innerHTML = `<div class="surprise-screen">🎉<br>${msg}<br>❤️</div>`;
-            document.body.style.backgroundColor = "#d8f3dc";
+            document.body.style.backgroundColor = "#e1bee7";
         }
 
-        // Keyboard Easter Egg (Typing "ZUCCHINI")
+        // Keyboard Easter Egg updated to "EGGPLANT"
         document.addEventListener('keyup', (e) => {
             typedInput += e.key.toUpperCase();
-            if (typedInput.includes("ZUCCHINI")) {
+            if (typedInput.includes("EGGPLANT")) {
                 window.location.href = 'easteregg.html';
             }
-            // Prevent string from getting too long
             if (typedInput.length > 20) typedInput = typedInput.substring(10);
         });
 
