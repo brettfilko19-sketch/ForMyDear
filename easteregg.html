@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Eggplant!</title>
+    <title>Our Cauliflower!</title>
     <style>
         body {
-            background-color: #f4f7ed;
+            /* Changed to a soft garden green/cream palette */
+            background-color: #f1f8e9;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,7 +23,7 @@
             max-width: 85vw;
             max-height: 80vh;
             border: 8px solid #ffffff;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(46, 125, 50, 0.15);
             border-radius: 4px;
             transform: rotate(-2deg); /* Gives it a "photo" feel */
             z-index: 1;
@@ -42,11 +43,12 @@
             position: absolute;
             font-size: 2.5rem;
             font-weight: bold;
-            color: #1b4332;
+            /* Changed to a deep forest green */
+            color: #2e7d32;
             white-space: nowrap;
-            text-shadow: 2px 2px 10px rgba(255,255,255,0.8);
+            text-shadow: 2px 2px 10px rgba(255,255,255,0.9);
             z-index: 10;
-            pointer-events: none; /* Allows clicks to pass through to the image */
+            pointer-events: none; 
             animation: drift 15s linear infinite;
         }
 
@@ -82,7 +84,7 @@
         .bg-emoji {
             position: absolute;
             font-size: 2rem;
-            opacity: 0.3;
+            opacity: 0.4;
             z-index: 0;
         }
     </style>
@@ -90,14 +92,15 @@
 <body>
 
     <div class="photo-frame">
-        <img src="1.jpg" alt="Our Eggplant Photo">
+        <img src="1.jpg" alt="Our Cauliflower Photo">
     </div>
 
-    <div class="floating-caption">Our Eggplant! 🥒❤️</div>
+    <div class="floating-caption">Our Cauliflower! 🥬❤️</div>
 
-    <div class="bg-emoji" style="top:10%; left:10%;">🥒</div>
+    <div class="bg-emoji" style="top:10%; left:10%;">🥬</div>
     <div class="bg-emoji" style="top:80%; left:85%;">✨</div>
     <div class="bg-emoji" style="top:15%; left:70%;">🌱</div>
+    <div class="bg-emoji" style="top:70%; left:15%;">🥦</div>
 
 </body>
 </html>
