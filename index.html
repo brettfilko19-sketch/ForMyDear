@@ -6,8 +6,8 @@
     <title>For My Dear Wife</title>
     <style>
         body {
-            /* Changed to a soft lavender/purple palette */
-            background-color: #f3e5f5; 
+            /* Changed to a fresh green/white palette for Cauliflower */
+            background-color: #e8f5e9; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,15 +22,15 @@
             padding: 40px;
             background: white;
             border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(74, 20, 140, 0.15);
+            box-shadow: 0 15px 35px rgba(46, 125, 50, 0.15);
             z-index: 2;
-            /* Purple border to match eggplant */
-            border: 3px solid #4a148c;
+            /* Green border to match cauliflower leaves */
+            border: 3px solid #2e7d32;
             max-width: 80%;
         }
-        h1 { color: #311b92; font-size: 2.5rem; margin-bottom: 10px; }
-        p { color: #6a1b9a; font-size: 1.4rem; margin-bottom: 20px; }
-        #click-counter { font-weight: bold; color: #7b1fa2; font-size: 1.1rem; margin-bottom: 10px; }
+        h1 { color: #1b5e20; font-size: 2.5rem; margin-bottom: 10px; }
+        p { color: #2e7d32; font-size: 1.4rem; margin-bottom: 20px; }
+        #click-counter { font-weight: bold; color: #388e3c; font-size: 1.1rem; margin-bottom: 10px; }
         
         .main-emoji {
             font-size: 50px; 
@@ -53,7 +53,7 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
         button {
-            background-color: #6a1b9a;
+            background-color: #2e7d32;
             border: none;
             padding: 12px 25px;
             border-radius: 25px;
@@ -63,19 +63,19 @@
             transition: background 0.3s;
         }
         button:hover {
-            background-color: #4a148c;
+            background-color: #1b5e20;
         }
-        #note-display { margin-top: 20px; font-style: italic; color: #4a148c; min-height: 30px; }
-        .surprise-screen { font-size: 3rem; color: #311b92; font-weight: bold; text-align: center; }
+        #note-display { margin-top: 20px; font-style: italic; color: #1b5e20; min-height: 30px; }
+        .surprise-screen { font-size: 3rem; color: #1b5e20; font-weight: bold; text-align: center; }
     </style>
 </head>
 <body>
 
     <div class="container" id="main-container">
-        <div id="click-counter">Eggplant Growth: <span id="score">0</span>/10</div>
+        <div id="click-counter">Cauliflower Growth: <span id="score">0</span>/10</div>
         <div class="main-emoji" id="growth-emoji">🌱</div>
         <h1>I love you</h1>
-        <p>Help our <strong>Eggplant</strong> grow!</p>
+        <p>Help our <strong>Cauliflower</strong> grow!</p>
         <button onclick="showNote()">A message for you</button>
         <div id="note-display"></div>
     </div>
@@ -116,8 +116,8 @@
         function createFloatingElement() {
             const el = document.createElement('div');
             el.classList.add('floating');
-            // Changed items to purple/growth themed emojis
-            const items = ['🍆', '💧', '☀️', '🌱', '🌸', '💜'];
+            // Items updated to green/cauliflower themed emojis
+            const items = ['🥬', '💧', '☀️', '🌱', '🥦', '🤍'];
             el.innerHTML = items[Math.floor(Math.random() * items.length)];
             el.style.left = Math.random() * 90 + 'vw';
             el.style.fontSize = (Math.random() * 20 + 25) + 'px';
@@ -130,9 +130,9 @@
                 let size = 50 + (clickCount * 8);
                 growthEl.style.fontSize = size + 'px';
                 
-                // Growth stages updated to Eggplant
+                // Growth stages updated to Cauliflower/Greenery
                 if (clickCount === 3) growthEl.innerHTML = '🌿';
-                if (clickCount === 6) growthEl.innerHTML = '🍆';
+                if (clickCount === 6) growthEl.innerHTML = '🥦';
                 if (clickCount === 10) triggerSurprise();
 
                 this.innerHTML = '✨';
@@ -145,19 +145,19 @@
 
         function triggerSurprise() {
             const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-            // Message updated with Eggplant emoji
-            let msg = userTimezone.includes("Australia") ? "Hello Mr. 415 GIG ATT 🍆" : "Hi Dear 🍆";
+            // Message updated with Green Leafy emoji
+            let msg = userTimezone.includes("Australia") ? "Hello Mr. 415 GIG ATT 🥬" : "Hi Dear 🥬";
             document.body.innerHTML = `<div class="surprise-screen">🎉<br>${msg}<br>❤️</div>`;
-            document.body.style.backgroundColor = "#e1bee7";
+            document.body.style.backgroundColor = "#c8e6c9";
         }
 
-        // Keyboard Easter Egg updated to "EGGPLANT"
+        // Keyboard Easter Egg updated to "CAULIFLOWER"
         document.addEventListener('keyup', (e) => {
             typedInput += e.key.toUpperCase();
-            if (typedInput.includes("EGGPLANT")) {
+            if (typedInput.includes("CAULIFLOWER")) {
                 window.location.href = 'easteregg.html';
             }
-            if (typedInput.length > 20) typedInput = typedInput.substring(10);
+            if (typedInput.length > 30) typedInput = typedInput.substring(15);
         });
 
         setInterval(createFloatingElement, 600);
