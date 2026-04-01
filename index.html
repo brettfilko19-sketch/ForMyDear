@@ -6,8 +6,8 @@
     <title>For My Dear Wife</title>
     <style>
         body {
-            /* Squash orange and cream gradient */
-            background: linear-gradient(135deg, #fff8e1 0%, #ffcc80 100%);
+            /* Pineapple yellow and soft cream gradient */
+            background: linear-gradient(135deg, #fffde7 0%, #fff176 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -22,20 +22,20 @@
             padding: 40px;
             background: white;
             border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.2);
+            box-shadow: 0 15px 35px rgba(46, 125, 50, 0.2);
             z-index: 2;
-            /* Squash skin/stem color */
-            border: 4px solid #8d6e63;
+            /* Tropical Green border */
+            border: 4px solid #4caf50;
             max-width: 85%;
         }
-        h1 { color: #e65100; font-size: 2.2rem; margin-bottom: 10px; }
-        p { color: #5d4037; font-size: 1.2rem; margin-bottom: 20px; }
+        h1 { color: #fbc02d; font-size: 2.2rem; margin-bottom: 10px; text-shadow: 1px 1px 0px #f57f17; }
+        p { color: #33691e; font-size: 1.2rem; margin-bottom: 20px; }
         
         #click-counter { 
             font-weight: bold; 
             color: #ffffff; 
             font-size: 1rem; 
-            background: #fb8c00;
+            background: #43a047;
             padding: 5px 15px;
             border-radius: 20px;
             display: inline-block;
@@ -64,30 +64,30 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
         button {
-            background-color: #ef6c00;
+            background-color: #fbc02d;
             border: none;
             padding: 14px 28px;
             border-radius: 30px;
-            color: white;
+            color: #1b5e20;
             font-weight: bold;
             cursor: pointer;
             transition: transform 0.2s, background 0.3s;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         button:hover {
-            background-color: #bf360c;
+            background-color: #fdd835;
             transform: scale(1.05);
         }
         #note-display { 
             margin-top: 20px; 
             font-style: italic; 
-            color: #d84315; 
+            color: #2e7d32; 
             min-height: 40px;
             line-height: 1.4;
         }
         .surprise-screen { 
             font-size: 2.5rem; 
-            color: #e65100; 
+            color: #fbc02d; 
             font-weight: bold; 
             text-align: center;
             padding: 20px;
@@ -97,10 +97,10 @@
 <body>
 
     <div class="container" id="main-container">
-        <div id="click-counter">Dino Garden Progress: <span id="score">0</span>/10</div><br>
+        <div id="click-counter">Our little Pineapple Progress: <span id="score">0</span>/10</div><br>
         <div class="main-emoji" id="growth-emoji">🌱</div>
-        <h1>I love you</h1>
-        <p>Catch the emoji  to grow our <strong>Dino-Squash</strong>!</p>
+        <h1>I love you dearie</h1>
+        <p>Catch the to grow our <strong>Dino-Pineapple</strong>!</p>
         <button onclick="showNote()">A message for you</button>
         <div id="note-display"></div>
     </div>
@@ -114,8 +114,9 @@
         const notes = [
             "You're going to be the best mom! 🤍",
             "Our little dino is so lucky to have you.",
-            "Dougie did Pee",
-            "I miss my dearie! 🎃",
+            "Dougie did Pissing",
+            "Hi Dear",
+            "I miss my dearie! 🍍",
             "Can't wait to meet our little guy!",
             "You are my dear. ☀️"
         ];
@@ -145,8 +146,8 @@
             const el = document.createElement('div');
             el.classList.add('floating');
             
-            // Themes: Dinosaurs, Squash/Harvest, and Love
-            const items = ['🦖', '☀️', '💧', '🤍', '🎃', '✨', '🍂'];
+            // Themes: Dinosaurs, Pineapple/Tropical, and Love
+            const items = ['🦖', '☀️', '🍍', '🤍', '🏝️', '✨', '🍃'];
             el.innerHTML = items[Math.floor(Math.random() * items.length)];
             el.style.left = Math.random() * 90 + 'vw';
             el.style.fontSize = (Math.random() * 20 + 25) + 'px';
@@ -161,11 +162,11 @@
                 let size = 60 + (clickCount * 12);
                 growthEl.style.fontSize = size + 'px';
                 
-                // Growth Stages: Sprout -> Flower -> Squash -> Dino
+                // Growth Stages: Sprout -> Flower -> Pineapple -> Dino
                 if (clickCount >= 3 && clickCount < 7) {
                     growthEl.innerHTML = '🌼'; // Flowering
                 } else if (clickCount >= 7 && clickCount < 10) {
-                    growthEl.innerHTML = '🎃'; // The Squash (using pumpkin emoji as squash)
+                    growthEl.innerHTML = '🍍'; // The Pineapple
                 } else if (clickCount === 10) {
                     growthEl.innerHTML = '🦖'; // The Dino!
                     setTimeout(triggerSurprise, 500);
@@ -185,12 +186,12 @@
             
             document.body.innerHTML = `
                 <div class="surprise-screen">
-                    <div>🦖🎃✨</div>
+                    <div>🦖🍍✨</div>
                     <div style="margin-top:20px;">You're Dino-mite!</div>
                     <div style="font-size: 1.5rem; margin-top:10px;">${msg}</div>
-                    <div style="color: #ff9800; margin-top:10px;">❤️</div>
+                    <div style="color: #4caf50; margin-top:10px;">❤️</div>
                 </div>`;
-            document.body.style.backgroundColor = "#fff8e1";
+            document.body.style.backgroundColor = "#fffde7";
         }
 
         document.addEventListener('keyup', (e) => {
