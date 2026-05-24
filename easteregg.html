@@ -3,104 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Dino!</title>
+    <title>Our Little John-Luca</title>
     <style>
         body {
-            /* Changed to a soft garden green/cream palette */
-            background-color: #f1f8e9;
+            background-color: #fff3e0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            position: relative;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
         }
-
-        .photo-frame {
-            position: relative;
-            max-width: 85vw;
-            max-height: 80vh;
-            border: 8px solid #ffffff;
-            box-shadow: 0 20px 40px rgba(46, 125, 50, 0.15);
-            border-radius: 4px;
-            transform: rotate(-2deg); /* Gives it a "photo" feel */
-            z-index: 1;
-            background: white;
-            padding: 10px;
+        .container {
+            padding: 20px;
         }
-
-        .photo-frame img {
-            display: block;
-            max-width: 100%;
-            max-height: 75vh;
-            border-radius: 2px;
+        img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 20px;
+            border: 5px solid #689f38;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
         }
-
-        /* Floating Caption Styling */
-        .floating-caption {
-            position: absolute;
-            font-size: 2.5rem;
-            font-weight: bold;
-            /* Changed to a deep forest green */
-            color: #2e7d32;
-            white-space: nowrap;
-            text-shadow: 2px 2px 10px rgba(255,255,255,0.9);
-            z-index: 10;
-            pointer-events: none; 
-            animation: drift 15s linear infinite;
+        img:hover {
+            transform: scale(1.02);
         }
-
-        @keyframes drift {
-            0% {
-                top: 80%;
-                left: -20%;
-                transform: rotate(0deg);
-            }
-            25% {
-                top: 20%;
-                left: 30%;
-                transform: rotate(10deg);
-            }
-            50% {
-                top: 50%;
-                left: 80%;
-                transform: rotate(-5deg);
-            }
-            75% {
-                top: 10%;
-                left: 40%;
-                transform: rotate(5deg);
-            }
-            100% {
-                top: 80%;
-                left: -20%;
-                transform: rotate(0deg);
-            }
-        }
-
-        /* Background decorations */
-        .bg-emoji {
-            position: absolute;
-            font-size: 2rem;
-            opacity: 0.4;
-            z-index: 0;
-        }
+        h1 { color: #e65100; margin-top: 20px; }
+        p { color: #33691e; }
     </style>
 </head>
 <body>
 
-    <div class="photo-frame">
-        <img src="1.jpg" alt="Our Cauliflower Photo">
+    <div class="container">
+        <!-- Clicking this image will open the Google Photos link -->
+        <a href="https://photos.google.com/u/1/share/AF1QipM93FevXd8xw4ADv6hzaX3ebuBZ1c4dk4D9XNf8Ipuqj__5K9cjE9xMn5Wt0tRIQg" target="_blank">
+            <img src="JL1.jpg" alt="Our little John-Luca">
+        </a>
+        <h1>Meet John-Luca</h1>
+        <p>Click the photo to see more of our little guy!</p>
     </div>
-
-    <div class="floating-caption">Our Dino!❤️</div>
-
-    <div class="bg-emoji" style="top:10%; left:10%;">🥬</div>
-    <div class="bg-emoji" style="top:80%; left:85%;">✨</div>
-    <div class="bg-emoji" style="top:15%; left:70%;">🌱</div>
-    <div class="bg-emoji" style="top:70%; left:15%;">🥦</div>
 
 </body>
 </html>
